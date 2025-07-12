@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KBC Quiz Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+    function useFiftyFifty(options) {
+        fetch('/lifeline/fifty?' + options.map(opt => `options=${encodeURIComponent(opt)}`).join('&'))
+            .then(res => res.json())
+            .then(data => {
+                data.remove.forEach(text => {
+                    document.querySelectorAll('.option').forEach(btn => {
+                        if (btn.textContent.trim() === text.trim()) {
+                            btn.style.display = 'none';
+                        }
+                    });
+                });
+                document.getElementById('fifty').disabled = true;
+            });
+    }
+</script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 KBC Quiz Game 🌟</h1>
+        <p>Score: {{ score }}</p>
+
+        <form method="POST" action="/answer">
+            <h2>{{ question|safe }}</h2>
+            {% for opt in options %}
+                <button type="submit" class="option" name="option" value="{{ opt }}">{{ opt }}</button><br>
+            {% endfor %}
+        </form>
+
+        <div class="lifelines">
+            {% if lifelines.skip %}
+                <a href="/lifeline/skip" class="lifeline-btn">⏭️ Skip</a>
+            {% endif %}
+            {% if lifelines.fifty %}
+                <button
+                    id="fifty"
+                    type="button"
+                    class="lifeline-btn"
+                    onclick='useFiftyFifty({{ options | tojson | safe }})'>
+                    🌓 50:50
+                </button>
+
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

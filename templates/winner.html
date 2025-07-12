@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🏆 You Won!</title>
+    <style>
+        body {
+            background-color: black;
+            color: gold;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding-top: 100px;
+            animation: sparkle 1s infinite alternate;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        .score {
+            font-size: 2em;
+            color: cyan;
+        }
+        a {
+            color: white;
+            font-size: 1.3em;
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: green;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        @keyframes sparkle {
+            0% { text-shadow: 0 0 5px gold; }
+            100% { text-shadow: 0 0 20px gold, 0 0 10px yellow; }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Congratulations!</h1>
+    <p class="score">You answered all 12 questions correctly!</p>
+    <p class="score">Final Score: {{ score }}</p>
+    <a href="/">🔁 Play Again</a>
+</body>
+</html>

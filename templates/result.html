@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Over</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .box {
+            border: 2px solid red;
+            padding: 40px;
+            display: inline-block;
+            background: #222;
+            border-radius: 10px;
+        }
+        h1 {
+            color: red;
+            font-size: 2.5em;
+        }
+        .score {
+            color: yellow;
+            font-size: 2em;
+        }
+        a {
+            color: cyan;
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>❌ Game Over!</h1>
+        <p class="score">Your Score: {{ score }}</p>
+        <a href="/">🔄 Play Again</a>
+    </div>
+</body>
+</html>
