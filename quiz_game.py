@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, redirect, jsonify
 import requests
 import random
 import html
+import os
 
 app = Flask(__name__)
 app.secret_key = "kbc-secret-key"
@@ -115,4 +116,5 @@ def lifeline_fifty():
     return redirect("/quiz")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
